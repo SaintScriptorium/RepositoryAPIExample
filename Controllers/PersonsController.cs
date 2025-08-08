@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using RepositoryAPIs.Models;
-using RepositoryAPIs.Interfaces;
+using RepositoryAPIs.Services;
 
 namespace RepositoryAPIs.Controllers;
 
@@ -9,9 +9,9 @@ namespace RepositoryAPIs.Controllers;
 
 public class PersonsController : ControllerBase
 {
-    private readonly IPersons service;
+    private readonly PersonService service;
 
-    public PersonsController(IPersons service)
+    public PersonsController(PersonService service)
     {
         this.service = service;
     }

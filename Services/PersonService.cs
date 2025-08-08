@@ -1,51 +1,37 @@
-using RepositoryAPIs.Interfaces;
+using RepositoryAPIs.Repositories.InterfacesRepositories;
 using RepositoryAPIs.Models;
-using RepositoryAPIs.Context;
-using Microsoft.EntityFrameworkCore;
-
 namespace RepositoryAPIs.Services;
-
-
-public class PersonService : IPersons
+public class PersonService 
 {
-    private readonly DatabasesContexts _context;
+    private readonly IPersonRepository repository;
 
-    public PersonService(DatabasesContexts _context)
+    public PersonService(IPersonRepository repo)
     {
-        this._context = _context;
+        repository = repo;
     }
     public IEnumerable<Persons> GetAll()
     {
-             
-        return _context.Personas.ToList();
+        return repository.GetAll();
     }
 
 
     public Persons GetById(int Id)
     {
-        var person = _context.Personas.Find(Id);
-        return person;
+        return repository.GetById(Id);
     }
 
     public string Post(Persons person)
     {
-        _context.Personas.Add(person);
-        _context.SaveChanges();
-        return "Registry saved";
+        return repository.Post(person);
     }
 
     public string Update(Persons person)
     {
-        _context.Entry(person).State = EntityState.Modified;
-        _context.SaveChanges();
-        return "Registry modified";
+        return repository.Update(person);
     }
 
     public string Delete(int Id)
     {
-        var person = _context.Personas.Find(Id);
-        _context.Personas.Remove(person);
-        _context.SaveChanges();
-        return "Registry deleted";
+        return repository.Delete(Id);
     }
 }

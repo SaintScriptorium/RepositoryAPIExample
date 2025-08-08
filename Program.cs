@@ -1,5 +1,5 @@
-using RepositoryAPIs.Interfaces;
-using RepositoryAPIs.Services;
+using RepositoryAPIs.Repositories.RepositoryServices;
+using RepositoryAPIs.Repositories.InterfacesRepositories;
 using RepositoryAPIs.Context;
 
 namespace RepositoryAPIs;
@@ -14,7 +14,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-        builder.Services.AddScoped<IPersons, PersonService>();
+        builder.Services.AddScoped<IPersonRepository,PersonRepository>();
         builder.Services.AddNpgsql<DatabasesContexts>(builder.Configuration.GetConnectionString("DbConnection"));
         var app = builder.Build();
 
