@@ -21,9 +21,26 @@ public class PersonsController : ControllerBase
         return service.GetAll();
     }
 
+    [HttpGet("/ByID")]
+    public Persons GetById(int Id)
+    {
+        return service.GetById(Id);
+    }
     [HttpPost]
     public string Post(Persons person)
     {
         return service.Post(person);
+    }
+
+    [HttpPut]
+    public string Put(Persons person)
+    {
+        return service.Update(person);
+    }
+
+    [HttpDelete]
+    public string Delete(int Id)
+    {
+        return service.Delete(Id);
     }
 }

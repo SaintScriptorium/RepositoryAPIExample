@@ -109,3 +109,4 @@ J:\c# projects\RepositoryAPIs\obj\Debug\net8.0\refint\RepositoryAPIs.dll
 J:\c# projects\RepositoryAPIs\obj\Debug\net8.0\RepositoryAPIs.pdb
 J:\c# projects\RepositoryAPIs\obj\Debug\net8.0\RepositoryAPIs.genruntimeconfig.cache
 J:\c# projects\RepositoryAPIs\obj\Debug\net8.0\ref\RepositoryAPIs.dll
+J:\c# projects\RepositoryAPIs\obj\Debug\net8.0\RepositoryAPIs.sourcelink.json

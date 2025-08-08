@@ -1,6 +1,8 @@
 using RepositoryAPIs.Interfaces;
 using RepositoryAPIs.Models;
 using RepositoryAPIs.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace RepositoryAPIs.Services;
 
 
@@ -21,7 +23,8 @@ public class PersonService : IPersons
 
     public Persons GetById(int Id)
     {
-        return null;
+        var person = _context.Personas.Find(Id);
+        return person;
     }
 
     public string Post(Persons person)
@@ -33,11 +36,16 @@ public class PersonService : IPersons
 
     public string Update(Persons person)
     {
-        return null;
+        _context.Entry(person).State = EntityState.Modified;
+        _context.SaveChanges();
+        return "Registry modified";
     }
 
-    public string Delete(int id)
+    public string Delete(int Id)
     {
-        return null;
+        var person = _context.Personas.Find(Id);
+        _context.Personas.Remove(person);
+        _context.SaveChanges();
+        return "Registry deleted";
     }
 }
