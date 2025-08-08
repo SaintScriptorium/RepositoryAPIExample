@@ -1,0 +1,37 @@
+using RepositoryAPIs.Interfaces;
+using RepositoryAPIs.Services;
+using RepositoryAPIs.Context;
+
+namespace RepositoryAPIs;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
+
+
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        builder.Services.AddScoped<IPersons, PersonService>();
+        builder.Services.AddNpgsql<DatabasesContexts>(builder.Configuration.GetConnectionString("DbConnection"));
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+
+        app.MapControllers();
+
+        app.Run();
+    }
+}
