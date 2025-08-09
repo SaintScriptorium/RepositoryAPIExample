@@ -21,7 +21,7 @@ public class PersonsController : ControllerBase
         return service.GetAll();
     }
 
-    [HttpGet("/ByID")]
+    [HttpGet("/Getby{id}")]
     public Persons GetById(int Id)
     {
         return service.GetById(Id);
