@@ -16,30 +16,30 @@ public class PersonsController : ControllerBase
         this.service = service;
     }
     [HttpGet]
-    public IEnumerable<Persons> GetAll()
+    public async Task<IEnumerable<Persons>> GetAll()
     {
-        return service.GetAll();
+        return await service.GetAll();
     }
 
     [HttpGet("/Getby{id}")]
-    public Persons GetById(int Id)
+    public Persons GetById(int id)
     {
-        return service.GetById(Id);
+        return service.GetById(id);
     }
     [HttpPost]
-    public string Post(Persons person)
+    public Persons Post(Persons person)
     {
         return service.Post(person);
     }
 
     [HttpPut]
-    public string Put(Persons person)
+    public bool Put(Persons person)
     {
         return service.Update(person);
     }
 
     [HttpDelete]
-    public string Delete(int Id)
+    public bool Delete(int Id)
     {
         return service.Delete(Id);
     }

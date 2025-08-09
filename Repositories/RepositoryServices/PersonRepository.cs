@@ -12,38 +12,47 @@ public class PersonRepository : IPersonRepository
     {
         this._context = _context;
     }
-    public IEnumerable<Persons> GetAll()
+    public async Task<IEnumerable<Persons>> GetAll()
     {
-             
-        return _context.Personas.ToList();
+        return await _context.Personas.ToListAsync();
     }
-
-
+    
     public Persons GetById(int Id)
     {
         var person = _context.Personas.Find(Id);
         return person;
     }
 
-    public string Post(Persons person)
+    public Persons Post(Persons person)
     {
         _context.Personas.Add(person);
         _context.SaveChanges();
-        return "Registry saved";
+        return person;
     }
 
-    public string Update(Persons person)
+    public bool Update(Persons person)
     {
         _context.Entry(person).State = EntityState.Modified;
-        _context.SaveChanges();
-        return "Registry modified";
+        try
+        {
+            _context.SaveChanges();
+            return true;
+        }catch(DbUpdateConcurrencyException){
+        return false;
+        }
     }
 
-    public string Delete(int Id)
+    public bool Delete(int Id)
     {
         var person = _context.Personas.Find(Id);
-        _context.Personas.Remove(person);
-        _context.SaveChanges();
-        return "Registry deleted";
+        if(person == null){ 
+            return false;
+        }
+        else
+        {
+            _context.Personas.Remove(person);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

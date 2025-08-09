@@ -1,6 +1,7 @@
 using RepositoryAPIs.Repositories.RepositoryServices;
 using RepositoryAPIs.Repositories.InterfacesRepositories;
 using RepositoryAPIs.Context;
+using RepositoryAPIs.Services;
 
 namespace RepositoryAPIs;
 
@@ -16,6 +17,7 @@ public class Program
         builder.Services.AddSwaggerGen();
         builder.Services.AddScoped<IPersonRepository,PersonRepository>();
         builder.Services.AddNpgsql<DatabasesContexts>(builder.Configuration.GetConnectionString("DbConnection"));
+        builder.Services.AddScoped<PersonService>();
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

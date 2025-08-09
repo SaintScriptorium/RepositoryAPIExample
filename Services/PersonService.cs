@@ -9,9 +9,9 @@ public class PersonService
     {
         repository = repo;
     }
-    public IEnumerable<Persons> GetAll()
+    public Task<IEnumerable<Persons>> GetAll()
     {
-        return repository.GetAll();
+        return  repository.GetAll();
     }
 
 
@@ -20,18 +20,18 @@ public class PersonService
         return repository.GetById(Id);
     }
 
-    public string Post(Persons person)
+    public Persons Post(Persons person)
     {
         return repository.Post(person);
     }
 
-    public string Update(Persons person)
+    public bool Update(Persons person)
     {
         return repository.Update(person);
         
     }
 
-    public string Delete(int Id)
+    public bool Delete(int Id)
     {
         return repository.Delete(Id);
     }

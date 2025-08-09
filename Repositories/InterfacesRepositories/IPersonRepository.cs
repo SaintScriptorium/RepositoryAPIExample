@@ -3,9 +3,9 @@ namespace RepositoryAPIs.Repositories.InterfacesRepositories;
 
 public interface IPersonRepository
 {
-    IEnumerable<Persons> GetAll();
+    Task <IEnumerable<Persons>> GetAll();
     Persons GetById(int id);
-    string Post(Persons person);
-    string Update(Persons person);
-    string Delete(int id);
+    Persons Post(Persons person);
+    bool Update(Persons person);
+    bool Delete(int id);
 }
